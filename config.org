@@ -30,7 +30,6 @@
 	(global-display-line-numbers-mode 1)
 	(global-visual-line-mode -1)
 
-
 	;; Auto update on file changing 
 	(global-auto-revert-mode t)
 
@@ -38,7 +37,7 @@
 	(setq-default tab-width 2)
 
 	;; RET 
-	(electric-indent-mode -1)
+	(electric-indent-mode 1)
 
 	;; Scripts, package manager
 	(add-to-list 'load-path "~/.config/emacs/scripts/")
@@ -107,13 +106,12 @@
 			"f r" '(counsel-recentf     :wk "find recent files")
 			"TAB TAB" '(comment-line    :wk "comment lines"))
 
-		(use-package sudo-edit :ensure t  
-			:config
-			(idsyr/leader-keys
-				"s u" '(sudo-edit         :wk "sudo edit")))
-    (idsyr/leader-keys
-        "h"     '(:ignore t         :wk "help")
-        "h r r" '(reload-init-file  :wk "reload init file"))
+		(use-package sudo-edit :ensure t  )
+		(idsyr/leader-keys
+			"s u" '(sudo-edit         :wk "sudo edit"))
+		(idsyr/leader-keys
+				"h"     '(:ignore t         :wk "help")
+				"h r r" '(reload-init-file  :wk "reload init file"))
 
 		(idsyr/leader-keys
 			"b"   '(:ignore t					  :wk "buffer")
