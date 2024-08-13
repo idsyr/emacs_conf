@@ -19,6 +19,10 @@
 							(kill-buffer "*scratch*")
 							))
 
+	;; Hide extension buffers when cycling spc-b-n
+	(set-frame-parameter (selected-frame) 'buffer-predicate
+		(lambda (buf) (not (string-match-p "^*" (buffer-name buf)))))
+	
 	;; NYAAA~
 	(setq backup-directory-alist '((".*" . "~/.emacs_backup")))
 
