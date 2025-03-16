@@ -10,7 +10,6 @@
 ** Elpaca setup 
 #+begin_src emacs-lisp
 (load-file "~/.config/emacs/scripts/elpaca-setup.el")
-;;(add-to-list 'load-path "~/.config/emacs/scripts/")
 (require 'elpaca-setup)
 #+end_src
 
@@ -29,18 +28,23 @@
 
 ** Editor settings
 #+begin_src emacs-lisp
-(global-display-line-numbers-mode 1)
-(global-visual-line-mode 1)
-(setq-default tab-width 4)
-(electric-indent-mode -1)
-(org-indent-mode -1)
+(setq-default tab-width 3)
+(setq-default indent-tabs-mode nil)
+(electric-indent-mode nil)
+(setq-default org-indent-mode nil)
+(use-package aggressive-indent :ensure t)
+;;(setq-default global-aggressive-indent-mode)
+;;(defun insert-spaces-instead-of-tab ()
+;;  (interactive)
+;;  (insert-char ?\s tab-width))
+;;(global-set-key (kbd "TAB") 'insert-spaces-instead-of-tab)
 #+end_src
- 
+
 
 ** Syntax check
 #+begin_src emacs-lisp
 (use-package flycheck
-    :ensure t
+  :ensure t
   :defer t
   :diminish
   :init (global-flycheck-mode)
@@ -162,22 +166,22 @@
   ) 
 
   (idsyr/leader-keys
-    "b"   '(:ignore t      :wk "buffer <action>")
+    "b"   '(:ignore t           :wk "buffer <action>")
     "b n" '(next-buffer         :wk "next buffer")
     "b p" '(previous-buffer     :wk "previous buffer")
     "b k" '(kill-this-buffer    :wk "kill buffer")
     "b s" '(basic-save-buffer   :wk "save buffer")
-    "b l" '(switch-to-buffer  :wk "list of currently open")
-    "b S" '(save-some-buffer  :wk "save multiple buffers")
+    "b l" '(switch-to-buffer    :wk "list of currently open")
+    "b S" '(save-some-buffer    :wk "save multiple buffers")
     "b r" '(rename-buffer       :wk "rename buffer")
     )
-    
+  
     (load-file "~/.config/emacs/scripts/buffer-move.el") 
   (require 'buffer-move)
   (idsyr/leader-keys
     "w"   '(:ignore t           :wk "window <action>")
     "w c" '(evil-window-delete  :wk "kill/close")
-        "w p" '(evil-window-prev    :wk "prev")
+    "w p" '(evil-window-prev    :wk "prev")
     "w n" '(evil-window-next    :wk "next")
     "w h" '(evil-window-split   :wk "horizontal split window")
     "w v" '(evil-window-vsplit  :wk "vertical split window")
@@ -188,10 +192,10 @@
     )
 
   (idsyr/leader-keys
-    "t"   '(:ignore t           :wk "toggle <smth>")
+    "t"   '(:ignore t                 :wk "toggle <smth>")
     "t l" '(display-line-numbers-mode :wk "toggle line numbers")
-    "t t" '(visual-line-mode    :wk "toggle truncated lines")
-        "t c" '(reload-init-file   :wk "toggle config")
+    "t t" '(visual-line-mode          :wk "toggle truncated lines")
+        "t c" '(reload-init-file      :wk "toggle config")
     )
 
     (idsyr/leader-keys
@@ -223,6 +227,8 @@
 * Appearance
 ** GUI elements
 #+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode 1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -245,7 +251,7 @@
 
 ** Startup buffer
 #+begin_src emacs-lisp
-(setq initial-buffer-choice "~/todo.org")
+;; (setq initial-buffer-choice "~/todo.org")
 #+end_src
 
 
@@ -334,10 +340,10 @@
 
 ** Theme
 #+begin_src emacs-lisp
-(add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
-(add-hook 'after-init-hook (lambda () (load-theme 'challom)) )
-    ;;transparency
-(add-to-list 'default-frame-alist '(alpha-background . 80))
+;; (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+(add-hook 'after-init-hook (lambda () (load-theme 'tsdh-dark)) )
+;;transparency
+(add-to-list 'default-frame-alist '(alpha-background . 98))
 #+end_src
 
 
